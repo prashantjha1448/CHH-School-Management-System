@@ -1,0 +1,21 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-amber: #D97706;
+  --color-brand-amber-hover: #B45309;
+  --color-brand-gold: #EAB308;
+  --color-brand-gold-hover: #CA8A04;
+  --color-brand-gold-light: #FEF3C7;
+
+  --color-brand-navy: #0F172A;
+  --color-brand-navy-dark: #0B132B;
+  --color-brand-navy-header: #0B1528;
+  --color-brand-navy-card: #0F1C33;
+
+  --color-brand-crest-blue: #0043C6;
+  --color-brand-crest-red: #DC0000;
+
+  --color-brand-bg-light: #FAF9F6;
+  --color-brand-card-light: #F8F9FA;
+  --color-brand-text-dark: #111827;
+}

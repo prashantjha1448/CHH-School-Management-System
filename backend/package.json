@@ -1,0 +1,52 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "School Management System Backend API",
+  "keywords": [
+    "school",
+    "erp",
+    "management-system",
+    "education",
+    "student-management",
+    "attendance",
+    "fees",
+    "exams",
+    "mern",
+    "nodejs"
+  ],
+  "homepage": "https://github.com/prashantjha1448/CHH-School-Management-System#readme",
+  "bugs": {
+    "url": "https://github.com/prashantjha1448/CHH-School-Management-System/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/prashantjha1448/CHH-School-Management-System.git"
+  },
+  "license": "ISC",
+  "author": "Prashant Jha",
+  "type": "commonjs",
+  "main": "src/server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js"
+  },
+  "devDependencies": {
+    "eslint": "^10.10.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.6",
+    "nodemon": "^3.1.14",
+    "prettier": "^3.9.6"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "express-rate-limit": "^7.5.0",
+    "helmet": "^8.0.0",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^9.9.5",
+    "zod": "^3.24.2"
+  }
+}
