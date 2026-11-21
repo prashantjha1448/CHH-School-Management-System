@@ -1,113 +1,108 @@
+const mongoose = require("mongoose");
 
-const  mongoose  = require("mongoose");
-
-const studentSchema = new mongoose.Schema({
+const studentSchema = new mongoose.Schema(
+  {
     full_Name: {
-        firstName: {
-            type: String,
-            required: [true, "First name is required"],
-            minlength: [3, "First name must be at least 3 characters"],
-            maxlength: [25, "First name cannot exceed 25 characters"],
-            trim: true
-        },
-
-        middleName: {
-            type: String,
-            minlength: [3, "Middle name must be at least 3 characters"],
-            maxlength: [10, "Middle name cannot exceed 10 characters"],
-            trim: true
-        },
-
-        lastName: {
-            type: String,
-            required: [true, "Last name is required"],
-            minlength: [3, "Last name must be at least 3 characters"],
-            maxlength: [10, "Last name cannot exceed 10 characters"],
-            trim: true
-        }
-
+      firstName: {
+        type: String,
+        required: [true, "First name is required"],
+        minlength: [2, "First name must be at least 2 characters"],
+        maxlength: [50, "First name cannot exceed 50 characters"],
+        trim: true,
+      },
+      middleName: {
+        type: String,
+        maxlength: [50, "Middle name cannot exceed 50 characters"],
+        trim: true,
+        default: "",
+      },
+      lastName: {
+        type: String,
+        required: [true, "Last name is required"],
+        minlength: [2, "Last name must be at least 2 characters"],
+        maxlength: [50, "Last name cannot exceed 50 characters"],
+        trim: true,
+      },
     },
     email: {
-        type: String,
-        required: [true, "email is required"],
-        lowercase: true,
-        unique:  true,
-        trim: true,
-        match: [/^[^\s@]+@[^\s@]+\.[^\s@]+$/, "Please enter a valid email address"],
+      type: String,
+      required: [true, "Email is required"],
+      lowercase: true,
+      unique: true,
+      trim: true,
+      match: [/^[^\s@]+@[^\s@]+\.[^\s@]+$/, "Please enter a valid email address"],
     },
     enrollmentNo: {
-        type: String,
-        required: [true, "Enrollment number is required"],
-        unique: true,
-        trim: true,
-        uppercase: true,
-        match: [/^[A-Z0-9]+$/, "Enrollment number can contain only letters and numbers"]
+      type: String,
+      required: [true, "Enrollment number is required"],
+      unique: true,
+      trim: true,
+      uppercase: true,
+      match: [/^[A-Z0-9-]+$/, "Enrollment number can contain only letters, numbers, and hyphens"],
     },
     admissionNumber: {
-        type: String,
-        required: [true, "Admission number is required"],
-        unique: true,
-        trim: true,
-        uppercase: true
+      type: String,
+      required: [true, "Admission number is required"],
+      unique: true,
+      trim: true,
+      uppercase: true,
     },
     phone: {
-        type: String,
-        match: [/^[6-9]\d{9}$/, "Please enter a valid phone number"]
+      type: String,
+      trim: true,
+      match: [/^(\+91[\-\s]?)?[6-9]\d{9}$/, "Please enter a valid Indian mobile number"],
     },
     dob: {
-        type: Date,
-        required: [true, "Date of birth is required"],
+      type: Date,
+      required: [true, "Date of birth is required"],
     },
     gender: {
-        type: String,
-        enum: ["Male", "Female", "Other"],
-        required: true
+      type: String,
+      enum: ["Male", "Female", "Other"],
+      required: true,
     },
     address: {
-        street: String,
-        city: String,
-        state: String,
-        pincode: {
-            type: String,
-            match: [/^\d{6}$/, "Invalid pincode"]
-        }
+      street: { type: String, default: "" },
+      city: { type: String, default: "Katihar" },
+      state: { type: String, default: "Bihar" },
+      pincode: {
+        type: String,
+        match: [/^\d{6}$/, "Invalid 6-digit postal pincode"],
+      },
     },
     status: {
-        type: String,
-        enum: ["Active", "Inactive", "Graduated", "Transferred", "Expelled"],
-        default: "Active"
+      type: String,
+      enum: ["Active", "Inactive", "Graduated", "Transferred", "Expelled"],
+      default: "Active",
     },
     category: {
-        type: String,
-        enum: [
-            "General",
-            "OBC",
-            "SC",
-            "ST",
-            "EWS",
-            "Other",
-            "RTE"
-        ],
-        default: "General"
+      type: String,
+      enum: ["General", "OBC", "SC", "ST", "EWS", "Other", "RTE"],
+      default: "General",
     },
-   admissionDate: {
-        type: Date,
-        default: Date.now
+    admissionDate: {
+      type: Date,
+      default: Date.now,
     },
     class: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Class",
-      required: true
+      type: String,
+      required: [true, "Class is required (e.g. Class X)"],
+      trim: true,
     },
-
     section: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Section",
-      required: true
+      type: String,
+      default: "A",
+      trim: true,
     },
-},{
-    timestamps : true
-})
+    userRef: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+    },
+  },
+  {
+    timestamps: true,
+  }
+);
 
-const student_Model = mongoose.model('Students',studentSchema)
-module.exports = student_Model
+const studentModel = mongoose.model("Student", studentSchema);
+module.exports = studentModel;
