@@ -1,6 +1,7 @@
 require("dotenv").config();
 const app = require("./app");
 const connectDB = require("./db/db");
+const { connectPostgres } = require("./db/prisma");
 
 const PORT = process.env.PORT || 5000;
 
@@ -15,6 +16,7 @@ process.on("uncaughtException", (err) => {
 const startServer = async () => {
   try {
     await connectDB();
+    await connectPostgres();
 
     const server = app.listen(PORT, () => {
       console.log(

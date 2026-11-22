@@ -4,6 +4,10 @@ const helmet = require("helmet");
 const cookieParser = require("cookie-parser");
 const errorHandler = require("./middleware/error.middleware");
 const authRoutes = require("./routes/auth.routes");
+const noticeRoutes = require("./routes/notice.routes");
+const galleryRoutes = require("./routes/gallery.routes");
+const admissionRoutes = require("./routes/admission.routes");
+const contactRoutes = require("./routes/contact.routes");
 const ApiError = require("./utils/ApiError");
 
 const app = express();
@@ -52,6 +56,10 @@ app.get("/health", (req, res) => {
 
 // 5. API Routes
 app.use("/api/v1/auth", authRoutes);
+app.use("/api/v1/notices", noticeRoutes);
+app.use("/api/v1/gallery", galleryRoutes);
+app.use("/api/v1/admission", admissionRoutes);
+app.use("/api/v1/contact", contactRoutes);
 
 // 6. Handle Undefined / 404 Routes
 app.use((req, res, next) => {
