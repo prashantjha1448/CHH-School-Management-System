@@ -8,6 +8,10 @@ const noticeRoutes = require("./routes/notice.routes");
 const galleryRoutes = require("./routes/gallery.routes");
 const admissionRoutes = require("./routes/admission.routes");
 const contactRoutes = require("./routes/contact.routes");
+const profileRoutes = require("./routes/profile.routes");
+const chatRoutes = require("./routes/chat.routes");
+const feeRoutes = require("./routes/fee.routes");
+const academicRoutes = require("./routes/academic.routes");
 const ApiError = require("./utils/ApiError");
 
 const app = express();
@@ -60,6 +64,10 @@ app.use("/api/v1/notices", noticeRoutes);
 app.use("/api/v1/gallery", galleryRoutes);
 app.use("/api/v1/admission", admissionRoutes);
 app.use("/api/v1/contact", contactRoutes);
+app.use("/api/v1/profile", profileRoutes);
+app.use("/api/v1/chat", chatRoutes);
+app.use("/api/v1/fees", feeRoutes);
+app.use("/api/v1/academic", academicRoutes);
 
 // 6. Handle Undefined / 404 Routes
 app.use((req, res, next) => {

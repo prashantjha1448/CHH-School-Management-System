@@ -57,6 +57,56 @@ const UserSchema = new mongoose.Schema(
       type: String,
       default: "",
     },
+    bio: {
+      type: String,
+      trim: true,
+      maxlength: [500, "Bio cannot exceed 500 characters"],
+      default: "",
+    },
+    dateOfBirth: {
+      type: Date,
+    },
+    gender: {
+      type: String,
+      enum: ["Male", "Female", "Other", ""],
+      default: "",
+    },
+    bloodGroup: {
+      type: String,
+      default: "",
+    },
+    address: {
+      street: { type: String, default: "" },
+      city: { type: String, default: "Katihar" },
+      state: { type: String, default: "Bihar" },
+      pincode: { type: String, default: "" },
+    },
+    emergencyContact: {
+      name: { type: String, default: "" },
+      relation: { type: String, default: "" },
+      phone: { type: String, default: "" },
+    },
+    achievements: [
+      {
+        title: { type: String, required: true },
+        year: { type: String, default: "" },
+        description: { type: String, default: "" },
+      },
+    ],
+    facultyDetails: {
+      department: { type: String, default: "" },
+      qualification: { type: String, default: "" },
+      experienceYears: { type: Number, default: 0 },
+      subjectsHandled: [{ type: String }],
+    },
+    studentDetails: {
+      currentClass: { type: String, default: "" },
+      section: { type: String, default: "" },
+      rollNumber: { type: String, default: "" },
+      admissionYear: { type: String, default: "2026" },
+      fatherName: { type: String, default: "" },
+      motherName: { type: String, default: "" },
+    },
   },
   {
     timestamps: true,
